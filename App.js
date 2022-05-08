@@ -1,21 +1,20 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import Router from './app/navigators/router';
+
 
 import "react-native-gesture-handler";
-import SignUpScreen from './app/screens/SignUpScreen'
-import {View} from 'react-native';
+import { Provider } from "react-redux";
 import {NavigationContainer} from '@react-navigation/native';
 import HomeToDetail from './app/navigators/hometodetail';
-
+import store from "./app/redux";
 const App = () => {
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <HomeToDetail />
     </NavigationContainer>
-    // <View>
-    //   <SignUpScreen/>
-    // </View>
+    </Provider>
+
   );
 };
 export default App;
