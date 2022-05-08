@@ -1,10 +1,10 @@
+/* eslint-disable quotes */
+/* eslint-disable prettier/prettier */
 import {
   POST_EMAIL,
   POST_EMAIL_SUCCESS,
   POST_EMAIL_FAILED,
 } from "./actionType";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert} from "react-native"
 
 const initialState = {
   error: null,

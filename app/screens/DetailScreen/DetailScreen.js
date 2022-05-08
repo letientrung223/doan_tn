@@ -2,6 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
+import { SliderBox } from "react-native-image-slider-box";
 import {
   SafeAreaView,
   StyleSheet,
@@ -20,14 +21,16 @@ import {AddItemToCart} from '../../redux/product/action';
 import {useDispatch, useSelector} from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
-
+import {LogBox} from "react-native";
 var radio_props = [
   {label: 'S   ', value: 's'},
   {label: 'M   ', value: 'm'},
   {label: 'L   ', value: 'l'},
   {label: 'XL  ', value: 'xl'},
 ];
-
+LogBox.ignoreLogs([
+  "ViewPropTypes will be removed",
+  ])
 const DetailScreen = ({navigation, route}) => {
   const [count, setCount] = useState(1);
   const [value, setValues] = useState('');
@@ -48,23 +51,30 @@ const DetailScreen = ({navigation, route}) => {
   const item = route.params;
   const ListIMG = () => {
     return (
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={style.categoriesListContainer}>
-        {item.images.map((img, index) => (
-          <View key={index} style={style.brandBtnImgCon}>
-            <Image
-              source={{uri: img}}
-              style={{
-                height: 250,
-                width: 250,
-                resizeMode: 'cover',
-              }}
-            />
-          </View>
-        ))}
-      </ScrollView>
+      // <ScrollView
+      //   horizontal
+      //   showsHorizontalScrollIndicator={false}
+      //   contentContainerStyle={style.categoriesListContainer}>
+      //   {item.images.map((img, index) => (
+      //     <View key={index} style={style.brandBtnImgCon}>
+      //       <Image
+      //         source={{uri: img}}
+      //         style={{
+      //           height: 250,
+      //           width: 250,
+      //           resizeMode: 'cover',
+      //         }}
+      //       />
+      //     </View>
+      //   ))}
+      // </ScrollView>
+      <SliderBox images={item.images} 
+          autoplay 
+          circleLoop
+          // resizeMethod={'resize'}
+          // resizeMode={'cover'}
+          sliderBoxHeight={300}
+          />
     );
   };
   return (
@@ -82,7 +92,7 @@ const DetailScreen = ({navigation, route}) => {
           style={{
             justifyContent: 'center',
             alignItems: 'center',
-            height: 280,
+            height: 360,
           }}>
           <ListIMG />
         </View>

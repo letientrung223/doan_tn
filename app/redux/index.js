@@ -8,7 +8,7 @@ import {loginReducer} from "./login/reducer"
 import {signupReducer} from "./signup/reducer"
 // import {orderReducer} from "./order/reducer"
 import {cartReducer} from "./cart/reducer"
-// import {forgotPWReducer} from "./forgotpassword/reducer"
+import {forgotPWReducer} from "./forgotpassword/reducer"
 // import {resetPWReducer} from "./resetpassword/reducer"
 // import {getAccountReducer,updateAccountReducer} from "./accountdetail/reducer"
 // import {updatePasswordReducer} from "./changepassword/reducer"
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   signupReducer,
   // orderReducer,
   cartReducer,
-  // forgotPWReducer,
+  forgotPWReducer,
   // resetPWReducer,
   // getAccountReducer,
   // updateAccountReducer,
