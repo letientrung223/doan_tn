@@ -128,7 +128,7 @@ const HomeScreen = ({navigation}) => {
           <View style={{alignItems: 'center', top: 2}}>
             <Image
               // source={{uri: cloth.imageCover}}
-              source={{uri: cloth.image}}
+              source={{uri: cloth.imageCover}}
 
               style={{height: 120, width: 130}}
             />
