@@ -13,7 +13,9 @@ import {
   TextInput,
   Alert,ScrollView
 } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
+import Aka from 'react-native-vector-icons/Ionicons';
+
 import asset from "../../../assets/images/index";
 import CustomButton from "../../components/CustomButton";
 import COLORS from "../../consts/colors"
@@ -32,11 +34,11 @@ const onSubscribePressed = () => {
   console.warn("Da dang ki");
 };
   return (
-    <ScrollView style={{marginTop:60}}>
+    <ScrollView style={{ backgroundColor: COLORS.brown, flex: 1,marginBottom:90}}>
       <View style={styles.header}>
         <Image
-          source={asset.common.logo}
-          style={{ width: 176, height: 42 ,alignItems: "center"}}
+          source={asset.common.logo1}
+          style={{ width: 200, height: 60 ,alignItems: "center"}}
           resizeMode="contain"
         />
       </View>
@@ -52,35 +54,35 @@ const onSubscribePressed = () => {
         <TouchableOpacity onPress={()=>{}} 
             style={{ backgroundColor:COLORS.grey,height:50,padding:10,marginHorizontal:10,marginTop:5}} >
           <View style={{flexDirection: "row",alignItems: "center"}}>
-            <Ionicons name='home' size={26} color="black" /> 
+            <Aka name='home-outline' size={26} color="black" /> 
             <Text style={{fontSize:24}}> Dashboard</Text>
           </View> 
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{navigation.navigate("OrderScreen")}} 
             style={{ backgroundColor:'#E2E2E2',height:50,padding:10,marginHorizontal:10,marginTop:5}} >
           <View style={{flexDirection: "row",alignItems: "center"}}>
-            <Ionicons name='cart' size={26} color="black" /> 
+            <Aka name='list-outline' size={26} color="black" /> 
             <Text style={{fontSize:24}}> Order</Text>
           </View> 
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{navigation.navigate("AccountDetail")}} 
             style={{ backgroundColor:'#E2E2E2',height:50,padding:10,marginHorizontal:10,marginTop:5}} >
           <View style={{flexDirection: "row",alignItems: "center"}}>
-            <Ionicons name='person' size={26} color="black" /> 
+            <Aka name='person-outline' size={26} color="black" /> 
             <Text style={{fontSize:24}}> Account Detail</Text>
           </View> 
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{navigation.navigate("ChangePassword")}} 
             style={{ backgroundColor:'#E2E2E2',height:50,padding:10,marginHorizontal:10,marginTop:5}} >
           <View style={{flexDirection: "row",alignItems: "center"}}>
-            <Ionicons name='key' size={26} color="black" /> 
+            <Aka name='key-outline' size={26} color="black" /> 
             <Text style={{fontSize:24}}> Change Password</Text>
           </View> 
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>onLogOut()} 
             style={{ backgroundColor:'#E2E2E2',height:50,padding:10,marginHorizontal:10,marginTop:5}} >
           <View style={{flexDirection: "row",alignItems: "center"}}>
-            <Ionicons name='log-out' size={26} color="black" /> 
+            <Aka name='log-out-outline' size={26} color="black" /> 
             <Text style={{fontSize:24}}> Log Out</Text>
           </View> 
         </TouchableOpacity>

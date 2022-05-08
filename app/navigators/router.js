@@ -9,11 +9,18 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import CartScreen from '../screens/CartScreen';
+
+import User from "../screens/User";
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
-import COLORS from '../consts/colors';
 import ForgotPassword from "../screens/ForgotPassword";
-
+// import AccountDetail from "../screens/AccountDetail";
+// import ChangePassword from "../screens/ChangePassword";
+// import OrderScreen from "../screens/OrderScreen";
+// import ResetPassword from "../screens/ResetPassword";
+// import OrderDetailScreen from "../screens/OrderDetailScreen";
+import COLORS from '../consts/colors';
+import { useDispatch, useSelector } from "react-redux";
 const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
@@ -26,12 +33,33 @@ function SignInSignUp() {
       <Stack.Screen name="SignInScreen" component={SignInScreen} />
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+      {/* <Stack.Screen name="ResetPassword" component={ResetPassword} /> */}
 
+    </Stack.Navigator>
+  );
+}
+function Profile() {
+  
+  return (
+    
+    <Stack.Navigator
+      initialRouteName= {"User"}
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="User" component={User} />
+      {/* <Stack.Screen name="OrderScreen" component={OrderScreen} />
+      <Stack.Screen name="AccountDetail" component={AccountDetail} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name="OrderDetailScreen" component={OrderDetailScreen} /> */}
+      
+      
     </Stack.Navigator>
   );
 }
 
 function Router() {
+  const tokenVN = useSelector((state) => state.loginReducer.tokenVN);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -81,7 +109,7 @@ function Router() {
       />
       <Tab.Screen
         name="Profile"
-        component={SignInSignUp}
+        component={(tokenVN == "") ? SignInSignUp : Profile}
         options={{
           tabBarIcon: ({size, color}) => (
             <FontAwesome name="user" size={size} color={color} />

@@ -13,6 +13,9 @@ import {
   Dimensions,
   StatusBar,
 } from 'react-native';
+import { fetchProductList } from "../../redux/home/action";
+import { useDispatch, useSelector } from "react-redux";
+
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
 import {FlatList, TouchableOpacity, TouchableHighlight} from 'react-native';
 import COLORS from '../../consts/colors';
@@ -20,7 +23,78 @@ const {width} = Dimensions.get('screen');
 const Search = ({navigation}) => {
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState('');
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    getListProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
+  const getListProducts = () => {
+    dispatch(fetchProductList(""));
+  };
+  const productList = useSelector((state) => state.homeReducer.products);
+
+  const TK = (text) => {
+//    console.log(text);
+    text.toLowerCase()
+    let filteredData = productList.filter((item) => {
+      return item.name.toLowerCase().includes(text);
+    });
+  
+    
+    //console.log("trong func ",filteredData);
+
+    setFilteredData({filteredData });
+  };
+
+  //console.log("ngoai func ",filteredData.filteredData);
+
+  const Card = ({ cloth }) => {
+    return (
+      <TouchableHighlight
+        underlayColor={COLORS.white}
+        activeOpacity={0.9}
+        onPress={() => navigation.navigate("DetailScreen", cloth)}
+      >
+        <View style={styles.card}>
+          <View style={{ alignItems: "center", top: 2 }}>
+            <Image
+              source={{ uri: cloth.imageCover }}
+              style={{ height: 120, width: 130 }}
+            />
+          </View>
+          <View style={{ marginHorizontal: 20 }}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+                paddingTop: 10,
+              }}
+              numberOfLines={1}
+            >
+              {cloth.name}
+            </Text>
+            <Text style={{ fontSize: 14, color: COLORS.grey, marginTop: 2 }}>
+              {cloth.brand}
+            </Text>
+          </View>
+          <View
+            style={{
+              marginTop: 10,
+              marginHorizontal: 20,
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              ${cloth.price}
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    );
+  };
   return (
     <View style={styles.container}>
       <StatusBar
@@ -33,11 +107,18 @@ const Search = ({navigation}) => {
       <TextInput
         style={styles.input}
         placeholder="Search..."
+        value={searchText}
+        onChangeText={setSearchText}
       />
       </View>
       
-      <FontAwesome name="search" size={30} color="black" onPress={() =>alert('Tìm kiếm')}/>
+      <FontAwesome name="search" size={30} color="black" onPress={() =>TK(searchText)}/>
       </View>
+      <FlatList
+        data={filteredData.filteredData?filteredData.filteredData:productList}
+        keyExtractor={(item) => `item-${item.id}`}
+        renderItem={({ item }) => <Card cloth={item} />}
+      />
     </View>
   );
 };

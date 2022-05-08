@@ -8,13 +8,20 @@ import CustomButton from '../../components/CustomButton';
 import asset from '../../../assets/images/index';
 import COLORS from '../../consts/colors';
 
+import { useDispatch, useSelector } from "react-redux";
+import {postCheckSignUp} from "../../redux/signup/action";
+
 const SignUpScreen = ({navigation}) => {
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');
+  const dispatch =useDispatch();
 
-  const onSignUpPressed = (username, email, password, repassword) => {};
+  const onSignUpPressed = (username, email, password, repassword) => {
+    dispatch(postCheckSignUp(username,email, password,repassword));
+    console.log("onSignUpPressed with ",username,email,password,repassword); 
+  };
   return (
     <View style={styles.root}>
       <StatusBar

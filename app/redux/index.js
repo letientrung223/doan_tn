@@ -4,8 +4,8 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import {homeReducer} from "./home/reducer";
-// import {loginReducer} from "./login/reducer"
-// import {signupReducer} from "./signup/reducer"
+import {loginReducer} from "./login/reducer"
+import {signupReducer} from "./signup/reducer"
 // import {orderReducer} from "./order/reducer"
 // import {cartReducer} from "./cart/reducer"
 // import {forgotPWReducer} from "./forgotpassword/reducer"
@@ -19,8 +19,8 @@ import {homeReducer} from "./home/reducer";
 
 const rootReducer = combineReducers({ 
   homeReducer,
-  // loginReducer,
-  // signupReducer,
+  loginReducer,
+  signupReducer,
   // orderReducer,
   // cartReducer,
   // forgotPWReducer,

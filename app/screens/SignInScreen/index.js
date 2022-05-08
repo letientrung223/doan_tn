@@ -15,13 +15,18 @@ import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import asset from "../../../assets/images/index";
 import COLORS from "../../consts/colors";
+import { useDispatch, useSelector } from "react-redux";
+import {postCheckLogin} from "../../redux/login/action";
 
 
 const SignInScreen = ({navigation}) => {
+  const dispatch =useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onSignInPressed = (username,password) => {
+    console.log(username, password);
+    dispatch(postCheckLogin(username, password));
     
     
   };
