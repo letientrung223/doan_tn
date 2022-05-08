@@ -14,47 +14,49 @@ import {
 import { FlatList } from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
 import COLORS from "../../consts/colors";
+import { fetchUserCart, deleteItem,increaseQuantityUserCart, decreaseQuantityUserCart} from "../../redux/cart/action";
+import { useDispatch, useSelector } from "react-redux";
 import { PrimaryButton } from "../../../app/components/Button";
-
 const CartScreen = ({ navigation }) => {
-//   const tokenVN = useSelector((state) => state.loginReducer.tokenVN);
-//   const userCart = useSelector((state) => state.cartReducer.cart);
-//   function getIdCartItem(inputs) {
+  const tokenVN = useSelector((state) => state.loginReducer.tokenVN);
+  const userCart = useSelector((state) => state.cartReducer.cart);
+  function getIdCartItem(inputs) {
     
-//     var output = inputs.map(function(item){
-//         return item._id})
-//     return output
-// }
-//   const ID_cartItem = getIdCartItem(userCart);
-//   const dispatch = useDispatch();
+    var output = inputs.map(function(item){
+        return item._id})
+    return output
+}
+  const ID_cartItem = getIdCartItem(userCart);
+  const dispatch = useDispatch();
 
-//   useEffect(() => {
-//     getUserCart();
-//   }, [dispatch]);
+  useEffect(() => {
+    getUserCart();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
-//   const getUserCart = () => {
-//     dispatch(fetchUserCart(tokenVN));
-//   };
-//   const increase =async (id_product,size,quantity) => {
+  const getUserCart = () => {
+    dispatch(fetchUserCart(tokenVN));
+  };
+  const increase =async (id_product,size,quantity) => {
 
-//     dispatch(increaseQuantityUserCart(id_product,size,quantity,tokenVN))
-//   };
-//   const decrease =async (id_product,size,quantity) => {
-//     dispatch(decreaseQuantityUserCart(id_product,size,quantity,tokenVN))
-//   };
+    dispatch(increaseQuantityUserCart(id_product,size,quantity,tokenVN))
+  };
+  const decrease =async (id_product,size,quantity) => {
+    dispatch(decreaseQuantityUserCart(id_product,size,quantity,tokenVN))
+  };
 
-//   const onRemove = async (id) => {
+  const onRemove = async (id) => {
   
-//      dispatch(deleteItem(id,tokenVN));
+     dispatch(deleteItem(id,tokenVN));
    
-//   };
+  };
   const CartCard = ({ item }) => {
     return (
       <View style={styles.cartCard}>
         {/* ================================================================ */}
         <View>
           <TouchableOpacity
-            // onPress={() => {onRemove(item._id)}}
+            onPress={() => {onRemove(item._id)}}
             style={{ paddingTop: 60, paddingRight: 10 }}
           >
             <FontAwesome name="trash-o" size={24} color="black" />
@@ -70,7 +72,7 @@ const CartScreen = ({ navigation }) => {
             {/* Decrease */}
             <TouchableOpacity 
             disabled={item.userQuantity <= 1} 
-            // onPress={()=> decrease(item._id,item.userSize,item.userQuantity)}
+            onPress={()=> decrease(item._id,item.userSize,item.userQuantity)}
             >
               <FontAwesome name="minus" size={20} color={COLORS.dark} />
             </TouchableOpacity>
@@ -80,7 +82,7 @@ const CartScreen = ({ navigation }) => {
             </Text>
             {/* Increase */}
             <TouchableOpacity 
-            // onPress={()=> increase(item._id,item.userSize,item.userQuantity)}
+            onPress={()=> increase(item._id,item.userSize,item.userQuantity)}
             >
               <FontAwesome name="plus" size={20} color={COLORS.dark} />
             </TouchableOpacity>
@@ -111,10 +113,27 @@ const CartScreen = ({ navigation }) => {
           color="black"
           onPress={() => navigation.navigate("Home")}
         />
-        <Text style={{ fontSize: 24,  }}> Cart</Text>
+        <Text style={{ fontSize: 24,marginRight:0 }}> Cart</Text>
         <View></View>
       </View>
-    
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 80 }}
+        data={userCart}
+        renderItem={({ item }) => <CartCard item={item}
+        
+        />}
+        keyExtractor={ ( item, index ) => `${index}` }
+
+        ListFooterComponentStyle={{ paddingHorizontal: 20, marginTop: 20 }}
+        ListFooterComponent={() => (
+          <View>
+            <View style={{ marginHorizontal: 30 }}>
+              <PrimaryButton title="Check Out" onPress={() => navigation.navigate("CheckOut",ID_cartItem)}/>
+            </View>
+          </View>
+        )}
+      />
     </SafeAreaView>
   );
 };

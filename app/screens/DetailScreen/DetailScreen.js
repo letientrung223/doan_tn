@@ -16,7 +16,7 @@ import {
 import COLORS from '../../consts/colors';
 import {SecondaryButton} from '../../components/Button';
 import RadioForm from 'react-native-simple-radio-button';
-// import {AddItemToCart} from '../../redux/product/action';
+import {AddItemToCart} from '../../redux/product/action';
 import {useDispatch, useSelector} from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
@@ -41,10 +41,10 @@ const DetailScreen = ({navigation, route}) => {
     setCount(count => count - 1);
   };
 
-  // const onAddToCard = (id_product, size, qty, tokenVN) => {
-  //   dispatch(AddItemToCart(id_product, qty, size, tokenVN));
-  // };
-  // const tokenVN = useSelector(state => state.loginReducer.tokenVN);
+  const onAddToCard = (id_product, size, qty, tokenVN) => {
+    dispatch(AddItemToCart(id_product, qty, size, tokenVN));
+  };
+  const tokenVN = useSelector(state => state.loginReducer.tokenVN);
   const item = route.params;
   const ListIMG = () => {
     return (
@@ -139,7 +139,7 @@ const DetailScreen = ({navigation, route}) => {
           <View style={{marginTop: 40, marginBottom: 40}}>
             <SecondaryButton
               title="Add To Cart"
-              // onPress={() => onAddToCard(item._id, value, count, tokenVN)}
+               onPress={() => onAddToCard(item._id, value, count, tokenVN)}
             />
           </View>
         </View>

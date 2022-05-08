@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 
@@ -24,7 +25,7 @@ const SecondaryButton = ({title, onPress = () => {}}) => {
 const style = StyleSheet.create({
   title: {color: COLORS.white, fontWeight: 'bold', fontSize: 18},
   btnContainer: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.green,
     height: 60,
     borderRadius: 20,
     justifyContent: 'center',

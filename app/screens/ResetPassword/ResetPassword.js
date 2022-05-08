@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable quotes */
 import React, { useState } from "react";
 import {
   View,
@@ -9,27 +10,29 @@ import {
   TouchableOpacity,
   TextInput,Alert
 } from "react-native";
-// import { FontAwesome } from "@expo/vector-icons";
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
 import COLORS from "../../consts/colors";
 import asset from "../../../assets/images";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
-import {posFGPW} from "../../redux/forgotpassword/action"
-const ForgotPassword = ({ navigation }) => {
+
+import {patchUserPassword} from "../../redux/resetpassword/action"
+const Cart = ({ navigation }) => {
   const [data, setData ] = useState("");
   const dispatch = useDispatch();
-  
-  const onForgotPassWordPressed = (email) => {
+  const [password, setPassword ] = useState("");
+  const [repassword, setRepassword ] = useState("");
+  const onSendLinkPressed = (code,password,repassword) => {
+    console.log(code,password,repassword);
+    dispatch(patchUserPassword(code,password,repassword));
     
-    dispatch(posFGPW(email));
-    navigation.navigate("ResetPassword");
+    
   };
 
   
   return (
-    <SafeAreaView style={{ backgroundColor: COLORS.brown, flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
       <View style={styles.header}>
         <FontAwesome
           name="arrow-left"
@@ -37,20 +40,30 @@ const ForgotPassword = ({ navigation }) => {
           color="black"
           onPress={() => navigation.navigate("SignInScreen")}
         />
-        {/* <Image style={styles.Logo} source={asset.common.logo1} /> */}
-        <Text style={styles.textStyle}>Forgot Password</Text>
+                <Text style={styles.textStyle}>Reset Password</Text>
+
       </View>
       <View style={styles.root}>
       <CustomInput
-        placeholder="Enter your email"
+        placeholder="Enter your link to reset"
         value={data}
         setValue={setData}
+      />
+       <CustomInput
+        placeholder="Enter your password"
+        value={password}
+        setValue={setPassword}
+      />
+         <CustomInput
+        placeholder="Re-Enter your password"
+        value={repassword}
+        setValue={setRepassword}
       />
 
       <CustomButton 
         
-        text="Send" 
-        onPress={()=> onForgotPassWordPressed(data)}
+        text="Update" 
+        onPress={()=> onSendLinkPressed(data,password,repassword)}
 
          />
        </View>
@@ -66,7 +79,7 @@ const styles = StyleSheet.create({
   },
   Logo: {
     paddingTop: 30,
-    height: 60,
+    height: 35,
     width: 220,
     marginLeft:30,
   },
@@ -81,4 +94,4 @@ const styles = StyleSheet.create({
   },  
 
 });
-export default ForgotPassword;
+export default Cart;

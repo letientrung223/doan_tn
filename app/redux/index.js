@@ -7,12 +7,12 @@ import {homeReducer} from "./home/reducer";
 import {loginReducer} from "./login/reducer"
 import {signupReducer} from "./signup/reducer"
 // import {orderReducer} from "./order/reducer"
-// import {cartReducer} from "./cart/reducer"
+import {cartReducer} from "./cart/reducer"
 // import {forgotPWReducer} from "./forgotpassword/reducer"
 // import {resetPWReducer} from "./resetpassword/reducer"
 // import {getAccountReducer,updateAccountReducer} from "./accountdetail/reducer"
 // import {updatePasswordReducer} from "./changepassword/reducer"
-// import {productReducer} from "./product/reducer"
+import {productReducer} from "./product/reducer"
 // import {updateItemReducer} from "./cart/reducer"
 // import {createOrderReducer} from "./checkout/reducer"
 // import {checkoutSessionReducer} from "./checkoutsession/reducer"
@@ -22,13 +22,13 @@ const rootReducer = combineReducers({
   loginReducer,
   signupReducer,
   // orderReducer,
-  // cartReducer,
+  cartReducer,
   // forgotPWReducer,
   // resetPWReducer,
   // getAccountReducer,
   // updateAccountReducer,
   // updatePasswordReducer,
-  // productReducer,
+  productReducer,
   // updateItemReducer,
   // createOrderReducer,
   // checkoutSessionReducer,

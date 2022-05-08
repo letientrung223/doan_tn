@@ -17,7 +17,7 @@ import ForgotPassword from "../screens/ForgotPassword";
 // import AccountDetail from "../screens/AccountDetail";
 // import ChangePassword from "../screens/ChangePassword";
 // import OrderScreen from "../screens/OrderScreen";
-// import ResetPassword from "../screens/ResetPassword";
+import ResetPassword from "../screens/ResetPassword";
 // import OrderDetailScreen from "../screens/OrderDetailScreen";
 import COLORS from '../consts/colors';
 import { useDispatch, useSelector } from "react-redux";
@@ -33,7 +33,7 @@ function SignInSignUp() {
       <Stack.Screen name="SignInScreen" component={SignInScreen} />
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-      {/* <Stack.Screen name="ResetPassword" component={ResetPassword} /> */}
+      <Stack.Screen name="ResetPassword" component={ResetPassword} />
 
     </Stack.Navigator>
   );
