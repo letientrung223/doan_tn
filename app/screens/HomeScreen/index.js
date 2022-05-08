@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, {useEffect} from 'react';
@@ -11,7 +13,6 @@ import {
   Dimensions,
   StatusBar,
 } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
 import asset from '../../../assets/images';
 import COLORS from '../../consts/colors';
 import {
@@ -26,13 +27,25 @@ import {LogBox} from 'react-native';
 const {width} = Dimensions.get('screen');
 const cardWidth = width / 2 - 20;
 import cloths from '../../consts/cloths';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductList } from "../../redux/home/action";
+
 const HomeScreen = ({navigation}) => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
   const [selectedBrandIndex, setSelectedBrandIndex] = React.useState(0);
+  const productList = useSelector((state) => state.homeReducer.products);
+  // console.log("productlist ben home ",productList);
+  const dispatch = useDispatch();
   useEffect(() => {
-    // getListProducts();
+    // console.log("Vao day");
+    getListProducts();
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, []);
+  const getListProducts = () => {
+    // console.log("Vao day 1 ");
+
+    dispatch(fetchProductList(""));
+  };
   const ListCategories = () => {
     return (
       <ScrollView
@@ -43,7 +56,7 @@ const HomeScreen = ({navigation}) => {
           <TouchableOpacity
             key={index}
             activeOpacity={0.8}
-            onPress={() => alert('Lấy danh sách thể loại thông qua id')}>
+            onPress={() => dispatch(fetchProductList(category.id))}>
             <View
               style={{
                 backgroundColor:
@@ -92,7 +105,7 @@ const HomeScreen = ({navigation}) => {
             key={index}
             activeOpacity={0.8}
             value={brand.id}
-            onPress={() => alert('Lấy danh sách brand thông qua id')}>
+            onPress={() => dispatch(fetchProductList(brand.id))}>
             <View
               style={{
                 backgroundColor:
@@ -127,7 +140,6 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.card}>
           <View style={{alignItems: 'center', top: 2}}>
             <Image
-              // source={{uri: cloth.imageCover}}
               source={{uri: cloth.imageCover}}
 
               style={{height: 120, width: 130}}
@@ -215,7 +227,7 @@ const HomeScreen = ({navigation}) => {
         <FlatList
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          data={cloths}
+          data={productList}
           renderItem={({item}) => <Card cloth={item} />}
         />
       </ScrollView>

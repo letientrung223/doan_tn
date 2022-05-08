@@ -29,7 +29,7 @@ const ForgotPassword = ({ navigation }) => {
 
   
   return (
-    <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: COLORS.brown, flex: 1 }}>
       <View style={styles.header}>
         <FontAwesome
           name="arrow-left"
@@ -37,7 +37,8 @@ const ForgotPassword = ({ navigation }) => {
           color="black"
           onPress={() => navigation.navigate("SignInScreen")}
         />
-        <Image style={styles.Logo} source={asset.common.logo} />
+        {/* <Image style={styles.Logo} source={asset.common.logo1} /> */}
+        <Text style={styles.textStyle}>Forgot Password</Text>
       </View>
       <View style={styles.root}>
       <CustomInput
@@ -65,9 +66,13 @@ const styles = StyleSheet.create({
   },
   Logo: {
     paddingTop: 30,
-    height: 35,
+    height: 60,
     width: 220,
     marginLeft:30,
+  },
+  textStyle:{
+    fontSize:25 ,
+    marginLeft:20
   },
   root: {
     alignItems: "center",

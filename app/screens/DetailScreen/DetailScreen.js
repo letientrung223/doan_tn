@@ -68,14 +68,14 @@ const DetailScreen = ({navigation, route}) => {
     );
   };
   return (
-    <SafeAreaView style={{backgroundColor: COLORS.white, marginTop: 30}}>
+    <SafeAreaView style={{backgroundColor: COLORS.brown,}}>
       <View style={style.header}>
-        <MaterialIcons
-          name="arrow-back-ios"
+        <FontAwesome
+          name="arrow-left"
           size={28}
           onPress={() => navigation.navigate('Home')}
         />
-        <Text style={{fontSize: 20, fontWeight: 'bold'}}>Details</Text>
+        <Text style={{fontSize: 20, fontWeight: 'bold',marginLeft:120}}>Details</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
@@ -84,7 +84,7 @@ const DetailScreen = ({navigation, route}) => {
             alignItems: 'center',
             height: 280,
           }}>
-          {/* <ListIMG /> */}
+          <ListIMG />
         </View>
         <View style={style.details}>
           <View
@@ -160,7 +160,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 170,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.green,
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
   },

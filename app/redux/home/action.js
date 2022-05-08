@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable quotes */
+/* eslint-disable prettier/prettier */
 import {
   FETCH_PRODUCT,
   FETCH_PRODUCT_SUCCESS,
@@ -10,17 +13,15 @@ export const fetchProductList = (endpoints) => {
     dispatch(fetchProducts())
     try {
       axios.get(`https://shop-pbl6.herokuapp.com/api/v1/products/${endpoints}`).then(response => {
-        //console.log(response);
+        // console.log("response ben action",response);
         const products = response.data.data.data;
-        
-       //console.log("danh sach ben action", products);
 
         dispatch(fetchProductSuccess(products));
       }).catch(err => {
         dispatch(fetchProductFailed(err));
       })
     } catch (error) {
-      dispatch(fetchProductFailed(err));
+      dispatch(fetchProductFailed(error));
     }
   };
 };

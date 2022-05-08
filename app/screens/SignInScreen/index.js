@@ -43,6 +43,7 @@ const SignInScreen = ({navigation}) => {
         style={{ width: 230, height: 230 ,marginBottom:10}}
         resizeMode="contain"
       />
+      <Text style={styles.textStyle1}>Đăng nhập</Text>
       <CustomInput
         placeholder="Your email address"
         value={email}
@@ -66,11 +67,11 @@ const SignInScreen = ({navigation}) => {
         type="TERTIARY"
       />
 
-      <Text style={styles.textStyle}>
+      {/* <Text style={styles.textStyle}>
         ___________________Or___________________
-      </Text>
+      </Text> */}
 
-      <CustomButton
+      {/* <CustomButton
         text="Sign in with Google"
         bgColor="#FAE9EA"
         fgColor="#DD4D44"
@@ -81,13 +82,13 @@ const SignInScreen = ({navigation}) => {
         bgColor="#7689EF"
         fgColor="#3504FA"
         onPress={onSignInWithFBPressed}
-      />
+      /> */}
       <View
           style={{
             flexDirection: 'row',
             alignItems: 'flex-end',
             justifyContent: 'center',
-            marginTop: 40,
+            marginTop: 10,
             marginBottom: 20,
           }}>
           <Text style={{color: COLORS.grey, fontWeight: 'bold'}}>
@@ -119,6 +120,13 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: "#B0A7A7",
+  },
+  textStyle1: {
+    color: COLORS.green,
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: 20,
+    marginRight:250
   },
 });
 export default SignInScreen;
