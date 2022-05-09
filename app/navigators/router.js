@@ -16,9 +16,9 @@ import SignUpScreen from '../screens/SignUpScreen';
 import ForgotPassword from "../screens/ForgotPassword";
 // import AccountDetail from "../screens/AccountDetail";
 // import ChangePassword from "../screens/ChangePassword";
-// import OrderScreen from "../screens/OrderScreen";
+import OrderScreen from "../screens/OrderScreen";
 import ResetPassword from "../screens/ResetPassword";
-// import OrderDetailScreen from "../screens/OrderDetailScreen";
+import OrderDetailScreen from "../screens/OrderDetailScreen";
 import COLORS from '../consts/colors';
 import { useDispatch, useSelector } from "react-redux";
 const Tab = createBottomTabNavigator();
@@ -47,10 +47,10 @@ function Profile() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="User" component={User} />
-      {/* <Stack.Screen name="OrderScreen" component={OrderScreen} />
-      <Stack.Screen name="AccountDetail" component={AccountDetail} />
-      <Stack.Screen name="ChangePassword" component={ChangePassword} />
-      <Stack.Screen name="OrderDetailScreen" component={OrderDetailScreen} /> */}
+      <Stack.Screen name="OrderScreen" component={OrderScreen} />
+      {/* <Stack.Screen name="AccountDetail" component={AccountDetail} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />*/}
+      <Stack.Screen name="OrderDetailScreen" component={OrderDetailScreen} /> 
       
       
     </Stack.Navigator>
